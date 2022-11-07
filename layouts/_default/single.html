@@ -36,6 +36,9 @@
   {{- end }}
 
   <footer class="post-footer">
+    {{- if (.Param "ShowFundingIcons") }}
+    {{ partial "funding_icons.html" site.Params.fundingIcons }}
+    {{- end }}
     {{- $tags := .Language.Params.Taxonomies.tag | default "tags" }}
     <ul class="post-tags">
       {{- range ($.GetTerms $tags) }}

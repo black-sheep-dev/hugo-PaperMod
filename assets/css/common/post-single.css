@@ -303,6 +303,7 @@
 
 .post-tags a,
 .share-buttons,
+.funding-icons,
 .paginav {
     border-radius: var(--radius);
     background: var(--code-bg);
@@ -324,7 +325,14 @@
     background: var(--border);
 }
 
-.share-buttons {
+.funding-icons a svg {
+    margin: 14px;
+    height: 26px;
+    width: 26px;
+}
+
+.share-buttons,
+.funding-icons {
     margin: 14px 0;
     padding-inline-start: var(--radius);
     display: flex;
