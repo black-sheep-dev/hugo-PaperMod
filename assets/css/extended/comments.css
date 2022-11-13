@@ -1,0 +1,56 @@
+.mastodon-comment {
+    box-shadow: none !important;
+    display: block;
+    position: relative;
+    text-align: left;
+    width: 100%;
+}
+
+.mastodon-comment figcaption {
+    border: 1px solid var(--tertiary);
+    border-radius: 5px;
+    display: inline-block;
+    padding-left: 24px;
+    padding-right: 24px;
+    position: relative;
+    width: 100%;
+}
+
+.mastodon-comment figcaption:after {
+    border-color: transparent transparent var(--tertiary) transparent;
+    border-style: solid;
+    border-width: 0 10px 10px 10px;
+    bottom: 100%;
+    content: '';
+    height: 0;
+    left: 14px;
+    position: absolute;
+    width: 0;
+}
+
+.mastodon-comment .content {
+    color: var(--primary);
+    font-size: 2em;
+}
+
+.mastodon-comment-header {
+    display: grid;
+    margin: auto;
+    padding-top: 12px;
+    padding-left: 1rem;
+}
+
+.mastodon-comment .date {
+    color: var(--secondary);
+    font-size: 0.75em;
+}
+
+.mastodon-comment .avatar img {
+    vertical-align: top;
+    float: left;
+    min-width: 48px;
+    max-width: 48px;
+    border-radius: 50%;
+    border: 1px var(--tertiary) solid
+}
+
