@@ -31,3 +31,23 @@
 
 - id: code_copied
   translation: "Kopiert!"
+
+# ---------------------------------------------------------------------------------
+
+- id: comments
+  translation: "Kommentare"
+
+- id: comments-desc-pre
+  translation: "Du kannst dein Mastodon Konto benutzen, um auf diesen"
+
+- id: comments-desc-suf
+  translation: "Beitrag zu antworten"
+
+- id: comments-load
+  translation: "Lade Kommentare"
+
+- id: reply
+  translation: "Antworten"
+
+- id: comments-noscript
+  translation: "Du braucht Javascript um die Kommentare anzuzeigen"

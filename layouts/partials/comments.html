@@ -1,3 +1,60 @@
-{{- /* Comments area start */ -}}
-{{- /* to add comments read => https://gohugo.io/content-management/comments/ */ -}}
-{{- /* Comments area end */ -}}
+{{ with .Params.mastodon }}
+<div class="post-content">
+  <h2>{{ i18n "comments" }}</h2>
+  <p>{{ i18n "comments-desc-pre" }} <a class="link" href="https://{{ .host }}/@{{ .username }}/{{ .id }}" target="_blank">{{ i18n "comments-desc-suf" }}</a>.</p>
+  <p><a class="button" href="https://{{ .host }}/interact/{{ .id }}?type=reply" target="_blank">{{ i18n "reply" }}</a></p>
+  <p id="mastodon-comments-list"><button id="load-comment">{{ i18n "comments-load" }}</button></p>
+  <noscript><p>{{ i18n "comments-noscript" }}</p></noscript>
+  <script src="/js/purify.min.js"></script>
+  <script type="text/javascript">
+    function escapeHtml(unsafe) {
+      return unsafe
+           .replace(/&/g, "&amp;")
+           .replace(/</g, "&lt;")
+           .replace(/>/g, "&gt;")
+           .replace(/"/g, "&quot;")
+           .replace(/'/g, "&#039;");
+   }
+
+    document.getElementById("load-comment").addEventListener("click", function() {
+      document.getElementById("load-comment").innerHTML = "Loading";
+      fetch('https://{{ .host }}/api/v1/statuses/{{ .id }}/context')
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(data) {
+          if(data['descendants'] &&
+             Array.isArray(data['descendants']) && 
+            data['descendants'].length > 0) {
+              document.getElementById('mastodon-comments-list').innerHTML = "";
+              data['descendants'].forEach(function(reply) {
+                reply.account.display_name = escapeHtml(reply.account.display_name);
+                reply.account.emojis.forEach(emoji => {
+                  reply.account.display_name = reply.account.display_name.replace(`:${emoji.shortcode}:`,
+                    `<img src="${escapeHtml(emoji.static_url)}" alt="Emoji ${emoji.shortcode}" height="20" width="20" />`);
+                });
+                mastodonComment =
+                `<figure class="mastodon-comment">
+                        <div class="avatar">
+                            <a href="${reply.account.url}" target="_blank">
+                            <img src="${escapeHtml(reply.account.avatar_static)}" alt="${escapeHtml(reply.account.acct)}" />
+                            <div class="mastodon-comment-header">
+                                <strong>${reply.account.display_name}</strong>
+                                <span class="date">${new Date(reply.created_at).toLocaleString()}</span>
+                            </div>
+                            </a>
+                        </div>
+                    <figcaption>
+                      <p class="content">${reply.content}</p>
+                    </figcaption>
+                </figure>`;
+                document.getElementById('mastodon-comments-list').appendChild(DOMPurify.sanitize(mastodonComment, {'RETURN_DOM_FRAGMENT': true}));
+              });
+          } else {
+            document.getElementById('mastodon-comments-list').innerHTML = "<p>Not comments found</p>";
+          }
+        });
+      });
+  </script>
+</div>
+{{ end }}
