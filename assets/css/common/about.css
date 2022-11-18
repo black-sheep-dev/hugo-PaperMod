@@ -1,0 +1,15 @@
+.main .about {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.about img {
+    display: inline-table;
+    border-radius: 50%;
+}
+
+.about_inner h1 {
+    margin-bottom: 2rem;
+}
