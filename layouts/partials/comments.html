@@ -2,7 +2,7 @@
 <div class="post-content">
   <h2>{{ i18n "comments" }}</h2>
   <p>{{ i18n "comments-desc-pre" }} <a class="link" href="https://{{ .host }}/@{{ .username }}/{{ .id }}" target="_blank">{{ i18n "comments-desc-suf" }}</a>.</p>
-  <p><a class="button" href="https://{{ .host }}/interact/{{ .id }}?type=reply" target="_blank">{{ i18n "reply" }}</a></p>
+  <p><a class="button" href="https://{{ .host }}/@{{ .username }}/{{ .id }}" target="_blank">{{ i18n "reply" }}</a></p>
   <p id="mastodon-comments-list"><button id="load-comment">{{ i18n "comments-load" }}</button></p>
   <noscript><p>{{ i18n "comments-noscript" }}</p></noscript>
   <script src="/js/purify.min.js"></script>

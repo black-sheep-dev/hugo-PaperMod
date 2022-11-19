@@ -44,7 +44,7 @@
   translation: "Post"
 
 - id: comments-load
-  translation: "Load comments"
+  translation: "Show comments"
 
 - id: reply
   translation: "Reply"
